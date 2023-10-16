@@ -4,19 +4,20 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * Итератор для массива. Отдает элементы по порядку.
+ * Итератор для массива. Отдает элементы в обратном порядке.
  */
-public class ArrayIt implements Iterator<Integer> {
+public class BackwardArrayIt implements Iterator<Integer> {
     private final int[] data;
-    private int point = 0;
+    private int point;
 
-    public ArrayIt(int[] data) {
+    public BackwardArrayIt(int[] data) {
         this.data = data;
+        point = data.length - 1;
     }
 
     @Override
     public boolean hasNext() {
-        return point < data.length;
+        return point >= 0;
     }
 
     @Override
@@ -24,6 +25,6 @@ public class ArrayIt implements Iterator<Integer> {
         if (!hasNext()) {
             throw new NoSuchElementException();
         }
-        return data[point++];
+        return data[point--];
     }
 }
